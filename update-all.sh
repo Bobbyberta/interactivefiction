@@ -21,11 +21,22 @@ cd "${ROOT_DIR}" || exit
 git pull
 git submodule update --remote
 
-# Now check for changes and commit if needed
-echo "Checking for changes..."
+# Show status of all repositories
+echo "\n📋 Current Status:"
+echo "\n=== Backend Status ==="
+cd "${ROOT_DIR}/backend" || exit
+git status --short
+
+echo "\n=== Frontend Status ==="
+cd "${ROOT_DIR}/frontend" || exit
+git status --short
+
+echo "\n=== Main Repo Status ==="
+cd "${ROOT_DIR}" || exit
+git status --short
 
 # Prompt for commit message
-echo "Enter commit message (leave empty to skip commits): "
+echo "\n💬 Enter commit message (leave empty to skip commits): "
 read -r COMMIT_MSG
 
 if [ -n "$COMMIT_MSG" ]; then
@@ -33,7 +44,7 @@ if [ -n "$COMMIT_MSG" ]; then
     echo "📦 Committing backend changes..."
     cd "${ROOT_DIR}/backend" || exit
     if [ -n "$(git status --porcelain)" ]; then
-        git add .
+        git add --all  # This will stage deletions too
         git commit -m "Backend: ${COMMIT_MSG}"
         git push
         echo "✅ Backend updated"
@@ -45,7 +56,7 @@ if [ -n "$COMMIT_MSG" ]; then
     echo "🎨 Committing frontend changes..."
     cd "${ROOT_DIR}/frontend" || exit
     if [ -n "$(git status --porcelain)" ]; then
-        git add .
+        git add --all  # This will stage deletions too
         git commit -m "Frontend: ${COMMIT_MSG}"
         git push
         echo "✅ Frontend updated"
@@ -57,7 +68,7 @@ if [ -n "$COMMIT_MSG" ]; then
     echo "🔄 Updating main repository references..."
     cd "${ROOT_DIR}" || exit
     if [ -n "$(git status --porcelain)" ]; then
-        git add frontend backend
+        git add --all  # This will stage deletions too
         git commit -m "Update submodule references: ${COMMIT_MSG}"
         git push
         echo "✅ Main repository updated"
