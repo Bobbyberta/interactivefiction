@@ -2,6 +2,10 @@
 
 An AI-powered text adventure game where a Mistral AI model acts as your Dungeon Master, creating dynamic storylines based on your choices.
 
+
+##Useful things!
+./update-all.sh
+
 ## 🎮 Features
 
 - **AI Storytelling**: Dynamic narrative generation using Mistral AI
