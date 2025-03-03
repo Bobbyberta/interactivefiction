@@ -21,6 +21,15 @@ check_ollama() {
     fi
 }
 
+# Function to check if Mistral model is installed
+check_mistral() {
+    if ollama list | grep -q "mistral"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 echo "🚀 Starting local development environment..."
 
 # Check if Ollama is running
@@ -28,6 +37,15 @@ if ! check_ollama; then
     echo "📦 Starting Ollama..."
     ollama serve &
     sleep 5  # Wait for Ollama to start
+fi
+
+# Check if Mistral model is installed
+if ! check_mistral; then
+    echo "📥 Installing Mistral model..."
+    echo "This may take a few minutes..."
+    ollama pull mistral
+    echo "Waiting for model to be ready..."
+    sleep 10
 fi
 
 # Check if backend port is available
@@ -53,23 +71,29 @@ BACKEND_PID=$!
 
 # Open frontend
 echo "🎨 Opening frontend..."
+# Start a Python HTTP server for the frontend
+cd "${ROOT_DIR}/frontend/docs" || exit
+python3 -m http.server 8000 &
+FRONTEND_PID=$!
+
+# Wait a moment for the server to start
+sleep 2
+
+# Open the browser
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    # macOS
-    open "${ROOT_DIR}/frontend/docs/index.html"
+    open "http://localhost:8000"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # Linux
-    xdg-open "${ROOT_DIR}/frontend/docs/index.html"
+    xdg-open "http://localhost:8000"
 elif [[ "$OSTYPE" == "msys" ]]; then
-    # Windows
-    start "${ROOT_DIR}/frontend/docs/index.html"
+    start "http://localhost:8000"
 fi
 
 echo "✅ Development environment is ready!"
 echo "📝 Backend running on http://localhost:5001"
-echo "🎮 Frontend opened in your browser"
+echo "🎮 Frontend running on http://localhost:8000"
 echo ""
 echo "To stop the servers, press Ctrl+C"
 
 # Wait for Ctrl+C
-trap 'kill $BACKEND_PID; echo "🛑 Shutting down..."; exit 0' SIGINT
+trap 'kill $BACKEND_PID $FRONTEND_PID; echo "🛑 Shutting down..."; exit 0' SIGINT
 wait 
