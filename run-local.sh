@@ -12,41 +12,7 @@ check_port() {
     fi
 }
 
-# Function to check if Ollama is running
-check_ollama() {
-    if curl -s http://localhost:11434/api/tags >/dev/null; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-# Function to check if Mistral model is installed
-check_mistral() {
-    if ollama list | grep -q "mistral"; then
-        return 0
-    else
-        return 1
-    fi
-}
-
 echo "🚀 Starting local development environment..."
-
-# Check if Ollama is running
-if ! check_ollama; then
-    echo "📦 Starting Ollama..."
-    ollama serve &
-    sleep 5  # Wait for Ollama to start
-fi
-
-# Check if Mistral model is installed
-if ! check_mistral; then
-    echo "📥 Installing Mistral model..."
-    echo "This may take a few minutes..."
-    ollama pull mistral
-    echo "Waiting for model to be ready..."
-    sleep 10
-fi
 
 # Check if backend port is available
 if check_port 5001; then

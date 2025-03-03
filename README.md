@@ -6,9 +6,11 @@ An AI-powered text adventure game where a Mistral AI model acts as your Dungeon 
 ## 🚀 Quick Start
 
 ### Local Development
-1. Start Ollama in a terminal:
+1. Set up environment:
    ```bash
-   ollama serve
+   # Create .env file in backend directory
+   cd backend
+   echo "HUGGINGFACE_TOKEN=your_token_here" > .env
    ```
 
 2. In another terminal, run the backend:
