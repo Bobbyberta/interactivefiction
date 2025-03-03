@@ -1,41 +1,31 @@
-# Core application files
-backend/app.py:
-  description: "Main Flask application with API endpoints and Hugging Face integration"
-  tags: ["backend", "api", "ai"]
+# Auto-generated .cursorrules file
+# Last updated: Mon Mar  3 22:16:44 GMT 2025
 
-frontend/docs/script.js:
-  description: "Frontend game logic and API communication"
-  tags: ["frontend", "game", "api-client"]
+.gitignore:
+  description: "Initial commit: AI Dungeon Master text adventure game"
+  tags: []
 
-# Configuration files
-backend/.env:
-  description: "Backend environment variables (not in git)"
-  tags: ["config", "secrets"]
-  private: true
+.gitmodules:
+  description: "Update submodule references: Created save all script"
+  tags: []
 
-backend/requirements.txt:
-  description: "Python package dependencies"
-  tags: ["dependencies", "python"]
+README.md:
+  description: "Update submodule references: remove ollama and repalced with hugging face"
+  tags: [documentation]
 
-# Scripts
+backend:
+  description: "Update submodule references: Testing to see if working"
+  tags: []
+
+frontend:
+  description: "Update submodule references: Testing to see if working"
+  tags: []
+
 run-local.sh:
-  description: "Local development setup script"
-  tags: ["script", "development"]
+  description: "Update submodule references: remove ollama and repalced with hugging face"
+  tags: [script, shell]
 
 update-all.sh:
-  description: "Project-wide update and maintenance script"
-  tags: ["script", "maintenance"]
+  description: "Update submodule references: Added cursor rules file with updates"
+  tags: [script, shell]
 
-# Documentation
-README.md:
-  description: "Project overview and setup instructions"
-  tags: ["docs"]
-
-# Git configuration
-.gitignore:
-  description: "Project-wide git ignores"
-  tags: ["config", "git"]
-
-backend/.gitignore:
-  description: "Backend-specific git ignores"
-  tags: ["config", "git"] 
