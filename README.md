@@ -3,7 +3,36 @@
 An AI-powered text adventure game where a Mistral AI model acts as your Dungeon Master, creating dynamic storylines based on your choices.
 
 
-##Useful things!
+## 🚀 Quick Start
+
+### Local Development
+1. Start Ollama in a terminal:
+   ```bash
+   ollama serve
+   ```
+
+2. In another terminal, run the backend:
+   ```bash
+   cd backend
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   python app.py
+   ```
+
+3. Open the frontend:
+   ```bash
+   cd frontend/docs
+   # Open index.html in your browser
+   ```
+
+### Deployed Version
+- Frontend: https://bobbyberta.github.io/interactivefiction-frontend/docs/index.html
+- Backend: https://interactivefiction-sl2f.onrender.com
+
+Note: Make sure the API_URL in frontend/docs/script.js matches your Render deployment URL
+
+### Development Tools
 ./update-all.sh
 
 ## 🎮 Features
