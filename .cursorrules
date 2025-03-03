@@ -1,0 +1,41 @@
+# Core application files
+backend/app.py:
+  description: "Main Flask application with API endpoints and Hugging Face integration"
+  tags: ["backend", "api", "ai"]
+
+frontend/docs/script.js:
+  description: "Frontend game logic and API communication"
+  tags: ["frontend", "game", "api-client"]
+
+# Configuration files
+backend/.env:
+  description: "Backend environment variables (not in git)"
+  tags: ["config", "secrets"]
+  private: true
+
+backend/requirements.txt:
+  description: "Python package dependencies"
+  tags: ["dependencies", "python"]
+
+# Scripts
+run-local.sh:
+  description: "Local development setup script"
+  tags: ["script", "development"]
+
+update-all.sh:
+  description: "Project-wide update and maintenance script"
+  tags: ["script", "maintenance"]
+
+# Documentation
+README.md:
+  description: "Project overview and setup instructions"
+  tags: ["docs"]
+
+# Git configuration
+.gitignore:
+  description: "Project-wide git ignores"
+  tags: ["config", "git"]
+
+backend/.gitignore:
+  description: "Backend-specific git ignores"
+  tags: ["config", "git"] 

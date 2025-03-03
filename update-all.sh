@@ -80,3 +80,54 @@ if [ -n "$COMMIT_MSG" ]; then
 else
     echo "ℹ️ No commits made - repositories are up to date"
 fi
+
+# Update .cursorrules
+update_cursor_rules() {
+    echo "🔄 Updating .cursorrules..."
+    
+    # Get all tracked files
+    files=$(git ls-files)
+    
+    # Start the .cursorrules file
+    cat > .cursorrules << EOL
+# Auto-generated .cursorrules file
+# Last updated: $(date)
+
+EOL
+    
+    # Add each file to the rules
+    for file in $files; do
+        # Skip the .cursorrules file itself
+        if [ "$file" == ".cursorrules" ]; then
+            continue
+        fi
+        
+        # Determine file type and tags
+        tags=""
+        if [[ $file == *.py ]]; then
+            tags="backend, python"
+        elif [[ $file == *.js ]]; then
+            tags="frontend, javascript"
+        elif [[ $file == *.sh ]]; then
+            tags="script, shell"
+        elif [[ $file == *.md ]]; then
+            tags="documentation"
+        fi
+        
+        # Add the file to .cursorrules
+        cat >> .cursorrules << EOL
+$file:
+  description: "$(git log -1 --format=%s -- "$file")"
+  tags: [$tags]
+
+EOL
+    done
+    
+    echo "✅ .cursorrules updated"
+}
+
+# Main update script
+echo "🚀 Starting update process..."
+
+# Update .cursorrules
+update_cursor_rules
