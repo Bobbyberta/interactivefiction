@@ -1,5 +1,5 @@
 # Auto-generated .cursorrules file
-# Last updated: Mon Mar  3 23:44:14 GMT 2025
+# Last updated: Tue Mar  4 21:46:10 GMT 2025
 
 .gitignore:
   description: "Initial commit: AI Dungeon Master text adventure game"
@@ -14,7 +14,7 @@ README.md:
   tags: [documentation]
 
 backend:
-  description: "Update submodule references: Added story strucutre"
+  description: "Update submodule references: Basic template with limited story"
   tags: []
 
 frontend:
